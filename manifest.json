@@ -16,10 +16,17 @@
         "48": "images/icon-48.png",
         "128": "images/icon-128.png"
       },
-      "default_title": "Click to show an alert"
+      "default_title": "WikiAI",
+      "default_popup": "wikiai.html"
     },
     "permissions": ["activeTab", "scripting"],
+    "content_scripts": [
+      {
+        "js": ["content.js"],
+        "matches": ["https://*.google.com/*"]
+      }
+    ],
     "background": {
-        "service_worker": "background.js"
+      "service_worker": "background.js"
     }
 }

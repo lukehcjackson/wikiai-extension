@@ -1,1 +1,1 @@
-alert('running on click');
+document.addEventListener('click', () => alert('Click occurred!'));
