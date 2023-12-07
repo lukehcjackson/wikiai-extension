@@ -17,13 +17,13 @@
         "128": "images/icon-128.png"
       },
       "default_title": "WikiAI",
-      "default_popup": "wikiai.html"
+      "default_popup": "popup.html"
     },
     "permissions": ["activeTab", "scripting"],
     "content_scripts": [
       {
         "js": ["content.js"],
-        "matches": ["https://*.google.com/*"]
+        "matches": ["https://*.wikipedia.org/*"]
       }
     ],
     "background": {
