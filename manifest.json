@@ -19,7 +19,7 @@
       "default_title": "WikiAI",
       "default_popup": "popup.html"
     },
-    "permissions": ["activeTab", "scripting"],
+    "permissions": ["activeTab", "scripting", "storage"],
     "content_scripts": [
       {
         "js": ["content.js"],
