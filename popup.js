@@ -2,10 +2,12 @@
 
 function disableButton() {
     document.getElementById("runAIbutton").disabled = true;
+    console.log("disable button");
 }
 
 function enableButton() {
     document.getElementById("runAIbutton").disabled = false;
+    console.log("enable button");
 }
 
 const getTitleFromStorage = async (key) => {
@@ -35,21 +37,39 @@ function createTitleText(title) {
     document.body.appendChild(newDiv);
 }
 
-window.onload = disableButton();
+function buttonClicked() {
+    console.log("clicked");
+    disableButton();
+    const newDiv = document.createElement("div");
+    const divText = document.createTextNode("CHATGPT OUTPUT!!!!");
+    newDiv.appendChild(divText);
+    document.body.appendChild(newDiv);
+    enableButton();
+}
 
 //want: WAIT for "pageTitle" to be set BEFORE we can enable the button or display it's content
 //want: loadtitle to happen on opening the popup, not clicking on it
-
 //so: page loads -> user clicks/scrolls? -> store title -> user opens popup -> loadTitle(), enable button, display title
 //      |                   |                   |                   ^
 //      V                   V                   V                   |
 //    --X-------------------X---->do not enable button or show title until title stored and popup opened
 
-document.addEventListener('click', () => loadTitle(), { once: true });
 
-//not working because every click both loads the title, creates a div, and disables the button
-//but then why don't multiple text elements appear?
-document.getElementById("runAIbutton").addEventListener('click', disableButton());
+//load title once the extension html has loaded
+document.onreadystatechange = function () {
+    if (document.readyState == "complete") {
+        disableButton()
+        loadTitle();
+    }
+}
+
+//NO BRACKETS AFTER FUNCTION BECAUSE THAT CALLS IT INSTEAD OF REFERENCING IT!!
+document.getElementById("runAIbutton").addEventListener('click', buttonClicked);
+
+
+
+
+
 
 
 
